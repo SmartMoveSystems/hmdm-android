@@ -145,6 +145,18 @@ public class MDMService {
         }
     }
 
+    public void pushConfigImmediately() throws MDMException {
+        if (mdmApi == null) {
+            throw new MDMException(MDMError.ERROR_DISCONNECTED);
+        }
+
+        try {
+            mdmApi.pushConfigImmediately();
+        } catch (RemoteException e) {
+            // No pushConfigImmediately() method on factory provided library
+        }
+    }
+
     /**
      * Query configuration
      */

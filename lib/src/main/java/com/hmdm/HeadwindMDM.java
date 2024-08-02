@@ -200,6 +200,16 @@ public class HeadwindMDM {
         }
     }
 
+    public void pushConfigImmediately() {
+        if (mdmConnected) {
+            try {
+                mdmService.pushConfigImmediately();
+            } catch (MDMException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public boolean setCustom(int number, String value) {
         if (!mdmConnected) {
             return false;

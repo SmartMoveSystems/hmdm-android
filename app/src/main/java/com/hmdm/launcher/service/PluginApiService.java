@@ -32,8 +32,10 @@ import com.hmdm.launcher.BuildConfig;
 import com.hmdm.launcher.Const;
 import com.hmdm.launcher.helper.ConfigUpdater;
 import com.hmdm.launcher.helper.SettingsHelper;
+import com.hmdm.launcher.json.DeviceInfo;
 import com.hmdm.launcher.json.RemoteLogItem;
 import com.hmdm.launcher.pro.ProUtils;
+import com.hmdm.launcher.task.SendDeviceInfoTask;
 import com.hmdm.launcher.util.DeviceInfoProvider;
 import com.hmdm.launcher.util.RemoteLogger;
 import com.hmdm.launcher.util.Utils;
@@ -180,5 +182,13 @@ public class PluginApiService extends Service {
             // userInteraction is set to true so the applications are also updated unrelated from the app update schedule
             ConfigUpdater.forceConfigUpdate(PluginApiService.this, null, true);
         }
+
+        @Override
+        public void pushConfigImmediately() {
+            SendDeviceInfoTask sendDeviceInfoTask = new SendDeviceInfoTask(PluginApiService.this);
+            DeviceInfo deviceInfo = DeviceInfoProvider.getDeviceInfo(PluginApiService.this, true, true);
+            sendDeviceInfoTask.execute(deviceInfo);
+        }
+
     };
 }

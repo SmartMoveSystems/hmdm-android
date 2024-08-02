@@ -52,4 +52,10 @@ interface IMdmApi {
      * Force the configuration update
      */
     void forceConfigUpdate();
+
+    // Added by SmartMove
+    /**
+     * pushes configuration immediately to server
+     */
+    void pushConfigImmediately();
 }
