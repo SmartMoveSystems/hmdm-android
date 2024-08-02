@@ -179,6 +179,9 @@ public class DeviceInfoProvider {
         String launcherPackage = Utils.getDefaultLauncher(context);
         deviceInfo.setLauncherPackage(launcherPackage != null ? launcherPackage : "");
         deviceInfo.setDefaultLauncher(context.getPackageName().equals(launcherPackage));
+        deviceInfo.setCustom1(config.getConfig().getCustom1());
+        deviceInfo.setCustom2(config.getConfig().getCustom2());
+        deviceInfo.setCustom3(config.getConfig().getCustom3());
 
         return deviceInfo;
     }
