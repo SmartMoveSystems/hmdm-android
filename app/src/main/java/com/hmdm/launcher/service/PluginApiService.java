@@ -40,6 +40,8 @@ import com.hmdm.launcher.util.DeviceInfoProvider;
 import com.hmdm.launcher.util.RemoteLogger;
 import com.hmdm.launcher.util.Utils;
 
+import java.util.Locale;
+
 public class PluginApiService extends Service {
     // Data keys
     public static final String KEY_SERVER_HOST = "SERVER_HOST";
@@ -188,6 +190,15 @@ public class PluginApiService extends Service {
             SendDeviceInfoTask sendDeviceInfoTask = new SendDeviceInfoTask(PluginApiService.this);
             DeviceInfo deviceInfo = DeviceInfoProvider.getDeviceInfo(PluginApiService.this, true, true);
             sendDeviceInfoTask.execute(deviceInfo);
+        }
+
+        @Override
+        @Nullable
+        public String getExtra(String attribute) {
+            if (attribute.toLowerCase(Locale.ROOT).equals("iccid")) {
+                return DeviceInfoProvider.getIccid(PluginApiService.this);
+            }
+            return null;
         }
 
     };

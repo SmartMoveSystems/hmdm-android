@@ -157,6 +157,18 @@ public class MDMService {
         }
     }
 
+    public String getExtra(String attribute) throws MDMException {
+        if (mdmApi == null) {
+            throw new MDMException(MDMError.ERROR_DISCONNECTED);
+        }
+
+        try {
+            return mdmApi.getExtra(attribute);
+        } catch (RemoteException e) {
+            return "";
+        }
+    }
+
     /**
      * Query configuration
      */

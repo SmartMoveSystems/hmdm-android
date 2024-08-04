@@ -58,4 +58,10 @@ interface IMdmApi {
      * pushes configuration immediately to server
      */
     void pushConfigImmediately();
+
+    // Added by SmartMove
+    /**
+     * to get iccid send attribute as "iccid"
+     */
+    String getExtra(String attribute);
 }

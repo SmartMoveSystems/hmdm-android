@@ -210,6 +210,19 @@ public class HeadwindMDM {
         }
     }
 
+    public String getExtra(String attribute) {
+        if (mdmConnected) {
+            try {
+                return mdmService.getExtra(attribute);
+            } catch (MDMException e) {
+                e.printStackTrace();
+                return null;
+            }
+        } else {
+            return null;
+        }
+    }
+
     public boolean setCustom(int number, String value) {
         if (!mdmConnected) {
             return false;
